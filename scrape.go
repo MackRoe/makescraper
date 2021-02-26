@@ -6,6 +6,10 @@ import (
 	"github.com/gocolly/colly"
 )
 
+type BookInfo struct {
+	title: ""
+}
+
 // main() contains code adapted from example found in Colly's docs:
 // http://go-colly.org/docs/examples/basic/
 func main() {
@@ -13,11 +17,11 @@ func main() {
 	c := colly.NewCollector()
 
 	// On every a element which has href attribute call callback
-	c.OnHTML("a[href]", func(e *colly.HTMLElement) {
-                link := e.Attr("href")
+	c.OnHTML(".Five , a", func(e *colly.HTMLElement) {
+		link := e.Attr("href")
 
 		// Print link
-                fmt.Printf("Link found: %q -> %s\n", e.Text, link)
+		fmt.Printf("Link found: %q -> %s\n", e.Text, link)
 	})
 
 	// Before making a request print "Visiting ..."
@@ -26,5 +30,5 @@ func main() {
 	})
 
 	// Start scraping on https://hackerspaces.org
-	c.Visit("https://hackerspaces.org/")
+	c.Visit("https://books.toscrape.com/")
 }
