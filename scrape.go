@@ -2,12 +2,13 @@ package main
 
 import (
 	"fmt"
-
 	"github.com/gocolly/colly"
 )
 
 type BookInfo struct {
-	title: ""
+	title: string
+	author: string
+	five: bool
 }
 
 // main() contains code adapted from example found in Colly's docs:
@@ -17,8 +18,12 @@ func main() {
 	c := colly.NewCollector()
 
 	// On every a element which has href attribute call callback
-	c.OnHTML(".Five , a", func(e *colly.HTMLElement) {
+	c.OnHTML("article.product_pod star-rating Five e.children", func(e *colly.HTMLElement) {
 		link := e.Attr("href")
+		// Other selectors to try:
+		// article.product_pod star-rating Five
+		// e.children
+		// Previously used selector: .Five , a
 
 		// Print link
 		fmt.Printf("Link found: %q -> %s\n", e.Text, link)
